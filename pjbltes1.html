@@ -1,0 +1,201 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Pribadi Saya</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Menu Utama</div>
+        <div class="menu-buttons">
+            <a href="#menu-profil" class="tombol-anchor">Menu 1: Profil Saya</a>
+            <a href="#menu-form" class="tombol-anchor">Menu 2: Form Lengkap</a>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div id="menu-profil" class="kotak-profil">
+            <div class="foto-profil">
+                <img src="heer.jpg.jpeg" alt="Foto Profil">
+            </div>
+
+            <h2>HERI SETIAWAN</h2>
+            <p class="pekerjaan">Web Developer</p>
+
+            <hr style="margin:20px 0;">
+
+            <p class="bio">
+                Perkenalkan, nama saya Heri Setiawan. Saya lahir di Purbalingga pada
+                18 Maret 2010. Saat ini usia saya 16 tahun. Saya berasal dari keluarga
+                yang terdiri dari empat bersaudara dan saya merupakan anak terakhir.
+
+                Riwayat pendidikan saya dimulai di MIM 1 Babakan untuk jenjang
+                Sekolah Dasar (SD). Setelah lulus, saya melanjutkan pendidikan di
+                SMP Negeri 1 Padamara. Saat ini saya sedang menempuh pendidikan
+                di SMK Negeri 1 Purbalingga.
+
+                Saya duduk di kelas 10 dengan mengambil jurusan PPLG
+                (Pengembangan Perangkat Lunak dan Gim). Saya tertarik pada dunia
+                teknologi, pemrograman, dan pengembangan perangkat lunak.
+            </p>
+
+            <p><strong>Lokasi:</strong> Purbalingga, Indonesia</p>
+            <p><strong>Status:</strong> Pelajar</p>
+        </div>
+
+        <div id="menu-form" class="kotak-form">
+
+            <h2>Formulir Data Diri</h2>
+
+            <form id="formData">
+
+                <div class="grup-form">
+                    <label for="nama">Nama Lengkap</label>
+                    <input type="text" id="nama" required>
+                </div>
+
+                <div class="grup-form">
+                    <label for="alamat">Alamat</label>
+                    <input type="text" id="alamat" required>
+                </div>
+
+                <div class="grup-form-row">
+                    <div class="grup-form">
+                        <label for="tempat_lahir">Tempat Lahir</label>
+                        <input type="text" id="tempat_lahir" required>
+                    </div>
+
+                    <div class="grup-form">
+                        <label for="tanggal_lahir">Tanggal Lahir</label>
+                        <input type="date" id="tanggal_lahir" required>
+                    </div>
+                </div>
+
+                <div class="grup-form-row">
+                    <div class="grup-form">
+                        <label for="no_hp">No. HP</label>
+                        <input type="tel" id="no_hp" required>
+                    </div>
+
+                    <div class="grup-form">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                </div>
+
+                <div class="grup-form">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+
+                <div class="grup-form-row">
+                    <div class="grup-form">
+                        <label for="kelamin">Jenis Kelamin</label>
+                        <select id="kelamin" required>
+                            <option value="">Pilih</option>
+                            <option>Laki-Laki</option>
+                            <option>Perempuan</option>
+                        </select>
+                    </div>
+
+                    <div class="grup-form">
+                        <label for="agama">Agama</label>
+                        <select id="agama" required>
+                            <option value="">Pilih</option>
+                            <option>Islam</option>
+                            <option>Kristen</option>
+                            <option>Katolik</option>
+                            <option>Hindu</option>
+                            <option>Budha</option>
+                            <option>Khonghucu</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grup-form">
+                    <label for="hobi">Hobi</label>
+                    <input type="text" id="hobi">
+                </div>
+
+                <button type="submit" class="tombol-kirim">
+                    Kirim Data
+                </button>
+
+            </form>
+
+            <hr class="garis">
+
+            <h3>Riwayat Data Terkirim</h3>
+
+            <div id="riwayat-data">
+                <p class="kosong">Belum ada data yang dikirim.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        const form = document.getElementById("formData");
+        const riwayat = document.getElementById("riwayat-data");
+
+        let dataTerkirim = [];
+
+        form.addEventListener("submit", function(e) {
+
+            e.preventDefault();
+
+            const data = {
+                nama: document.getElementById("nama").value,
+                alamat: document.getElementById("alamat").value,
+                tempat: document.getElementById("tempat_lahir").value,
+                tanggal: document.getElementById("tanggal_lahir").value,
+                hp: document.getElementById("no_hp").value,
+                email: document.getElementById("email").value,
+                kelamin: document.getElementById("kelamin").value,
+                agama: document.getElementById("agama").value,
+                hobi: document.getElementById("hobi").value
+            };
+
+            dataTerkirim.push(data);
+
+            alert("✅ Data berhasil dikirim!");
+
+            tampilkanRiwayat();
+
+            form.reset();
+        });
+
+        function tampilkanRiwayat() {
+
+            riwayat.innerHTML = "";
+
+            dataTerkirim.forEach((item, index) => {
+
+                riwayat.innerHTML += `
+                    <div class="card-riwayat">
+                        <h4>Data #${index + 1}</h4>
+                        <p><b>Nama:</b> ${item.nama}</p>
+                        <p><b>Alamat:</b> ${item.alamat}</p>
+                        <p><b>Tempat Lahir:</b> ${item.tempat}</p>
+                        <p><b>Tanggal Lahir:</b> ${item.tanggal}</p>
+                        <p><b>No HP:</b> ${item.hp}</p>
+                        <p><b>Email:</b> ${item.email}</p>
+                        <p><b>Jenis Kelamin:</b> ${item.kelamin}</p>
+                        <p><b>Agama:</b> ${item.agama}</p>
+                        <p><b>Hobi:</b> ${item.hobi}</p>
+                    </div>
+                `;
+            });
+
+        }
+    </script>
+
+</body>
+</html>
+```
